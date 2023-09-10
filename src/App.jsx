@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Button, Checkbox, FormControlLabel, FormGroup, Grid } from '@mui/material';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
@@ -97,9 +100,10 @@ const App = () => {
                 }
 
                 {
-                    generatePassword &&
-                    <Grid item xs={12}>
+                    generatedPassword &&
+                    <Grid item xs={12} className='password-container'>
                         {generatedPassword}
+                        <ContentPasteIcon className='clipboard' onClick={() => {navigator.clipboard.writeText(generatedPassword); toast("Copied to clipboard");}}/>
                     </Grid>
                 }
                 
@@ -116,8 +120,8 @@ const App = () => {
                     </Grid>
                 }
                 
-
             </Grid>
+            <ToastContainer />
         </div>
 
     )
